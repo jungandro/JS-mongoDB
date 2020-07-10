@@ -1,0 +1,74 @@
+맥북 파이썬 설치
+
+제일 먼저 해야하는것
+맥 앱스토어에서 Xcode설치
+시간이 오래걸림
+
+pyenv  = "Simple Python Version Management", 로컬에 다양한 파이썬 버전을 설치하고 사용할 수 있도록 한다. 
+파이썬 버전에 대한 의존성을 해결할 수 있다. 
+
+virtualenv
+virtualenv는 파이썬 개발환경을 프로젝트별로 분리해서 관리할 수 있게 해주는 라이브러리입니다.
+위의 pyenv와 다른점은, pyenv는 파이썬의 버전을 관리해주는 것이며, virtualenv는 파이썬 패키지 설치 환경을 따로 관리해줍니다.
+
+pyenv-virtualenv
+위의 pyenv제작자가, pyenv를 사용할 경우 쉽게 virtualenv를 사용할 수 있도록 만든 라이브러리입니다.
+
+
+homebrew 설치
+https://brew.sh/index_ko
+(맥용 패키지 관리자)
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew 정상설치 확인법
+brew 입력
+사용법이 뜨면 정상
+
+brew로 pyenv 설치
+
+brew install pyenv
+brew install pyenv-virtualenv
+
+pyenv 정상설치 확인법
+pyenv install -l
+
+Available versions:
+버전들이 나오면 정상
+
+
+순서대로 진행하세요.
+순서가 꼬이면 안됩니다.
+vi ~/.bash_profile
+보통은 아무내용도 없음
+내용이 있더라도 괜찮음 
+shift+g를 누르면 문서 제일 밑으로 이동
+텍스트 입력 모드 알파벳 i를 누르고
+다음과 같은 텍스트들을 입력
+
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv > /dev/null; then eval “$(pyenv init -)”; fi
+if which pyenv-virtualenv-init > /dev/null; then eval “$(pyenv virtualenv-init -)”; fi
+
+다 입력 후 ESC 한번 누르고 :wq 엔터
+source ~/.bash_profile 또는 터미널 껏다 키기
+
+pyenv version 입력
+
+output : system (set by /home/username/.pyenv/version)이 나오면 정상
+
+pyenv install 3.7
+
+파이썬 글로벌 환경 설정 (선택사항)
+하게 되면 터미널에서 파이썬 기본환경이 지정한 버전이 됨
+맥은 파이썬 2.x버전이 내장되어있고 기본값으로 설정 되어있으므로 하는걸 추천
+
+pyenv global 3.7.0
+
+local별 가상환경 지정
+cd 디렉토리 변경 명령어
+ls 디렉토리 내용 확인 명령어
+cd 로 지정하고 싶은 디렉토리로 이동
+pyenv virtualenv <사용할 버전( 미리 설치 되어있어야함)> <가상환경 이름지정>
+pyenv local <지정한 가상환경 이름>
+
